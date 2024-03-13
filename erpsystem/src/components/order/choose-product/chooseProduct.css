@@ -1,0 +1,198 @@
+
+.main-container
+{
+    width:100%;
+    margin-left: 50px;
+     display: flex;
+     justify-content: center;
+     margin-top: 100px;
+}
+
+.table-container 
+{
+    background:#fff;
+    padding:20px 50px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 18px 0px #f1f0de;
+    
+}
+
+.table-view 
+{
+    margin-top: 20px;
+    
+}
+
+table th 
+{
+    font-weight: 500;
+    font-size: 12px;
+    padding: 10px;
+    border-bottom: 2px solid #9debb7;
+    color:#919191;
+    
+}
+
+
+
+
+
+table td
+{
+ border-bottom: 2px solid #9debb7; 
+ padding: 7px 30px;
+ font-size: 12px;
+}
+
+
+table tbody tr:nth-of-type(odd)
+{
+    background:#e8ffe9;
+}
+
+.table-action.add 
+{
+    margin-top: 30px;
+}
+
+.table-action.add a 
+{
+   text-decoration: none;
+   background:#009c46;
+   color:#fff;
+   padding:8px 30px;
+    font-size: 13px;
+   border-radius: 5px;
+   font-weight: 500;
+   border:2px solid #009c46;
+   transition: .3s all;
+}
+
+.table-action.add a:hover, .table-action.add a:focus 
+{
+    color:#009c46;
+    background:#dcf8e8;
+    border:2px solid #009c46;
+}
+
+.table-action.add a.add-product-btn 
+{
+    color:#009c46;
+    background:#dcf8e8;
+    border:2px solid #009c46;
+    margin-left: 10px;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+.a1{
+    color: #159904;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.a2{
+    color: #930303;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.a1 i, .a2 i {
+    font-size: 15px;
+}
+
+#product-data 
+{
+    display: block;
+}
+
+.card-container 
+{
+    display: none;
+}
+
+
+/* responsive */
+
+
+
+@media screen and (max-width:1020px)
+{
+  
+    .main-container
+    {
+        flex-wrap: wrap;
+        position:relative;
+        left:50%;
+        transform: translateX(-55%);
+    }
+
+
+    .table-container
+    {
+        max-width: 600px;
+        width: 50vw;
+        min-width: 300px;
+    }
+
+
+      /* card style */
+      .product-list #product-data 
+      {
+          display: none;
+      }
+  
+      .card-container 
+      {
+          display: block;
+      }
+  
+      .card
+      {
+          margin-top: 20px;
+          background:#e8fdea;
+          padding:10px;
+          border-radius:10px;
+      }
+  
+     
+      .card-name h3
+      {
+          font-size: 15px;
+          color:#075a0e;
+      }
+  
+      .card-category
+      {
+          margin-top: 10px;
+          font-size: 12px;
+          color:#169431;
+          display: flex;
+          justify-content: space-between;
+      }
+  
+      .card-date p 
+      {
+          color:#202220;
+          font-size: 8px;
+          margin-top: 10px;
+      }
+  
+      .card-price 
+      {
+          margin-top: 10px;
+          font-size: 10px;
+          color:#075a0e;
+      }
+  
+      .card-action
+      {
+          display: flex;
+          justify-content: space-around;
+          margin-top:10px;
+      }
+  
+
+}

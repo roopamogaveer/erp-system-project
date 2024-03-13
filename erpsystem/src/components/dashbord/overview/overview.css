@@ -1,0 +1,74 @@
+
+
+.overview 
+{
+    margin:70px;
+    h2 
+    {
+        font-size: 30px;
+        font-weight: 500;
+        color:var(--light-gray);
+
+        span
+        {
+            color:var(--light-green);
+        }
+    }
+}
+
+.overview_card_container 
+{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    width:450px;
+    margin-top: 50px;
+}
+
+.feature
+{
+    width:40vw;
+    margin-top: 80px;
+
+    p
+    {
+        color:var(--gray);
+        font-size: 13px;
+    }
+}
+
+
+
+/* Responsive Mobile */
+@media screen and (max-width:500px) 
+{
+.overview 
+{
+    margin:10px;
+
+    h2 
+    {
+        font-size: 22px;
+    }
+}
+
+.overview_card_container 
+{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    width:90vw;
+    margin-top: 50px;
+}
+
+
+.feature
+{
+    width:70vw;
+    margin-top: 50px;
+    margin-left: 15px;
+
+   
+}
+
+}

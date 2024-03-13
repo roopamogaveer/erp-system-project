@@ -1,0 +1,328 @@
+
+.calendar_container
+{
+
+    margin-top: 70px;
+    margin-right:50px;
+    margin-bottom: 40px;
+   
+    .calendar 
+    {
+        width:520px;
+        height:500px;
+        background:var(--shadow-green);
+        border-radius: 25px;
+        position: relative;
+        border:3px dashed var(--light-green);
+
+        .left_eyelet 
+        {
+           position: absolute;
+           border-radius: 50%;
+           background:var(--white);
+           width: 28px;
+           height: 28px;
+           left:50px;
+           top:28px;
+
+           img 
+           {
+            width:30px;
+           }
+
+        }
+
+        .right_eyelet 
+        {
+           position: absolute;
+           border-radius: 50%;
+           background:var(--white);
+           width: 28px;
+           height: 28px;
+           right:50px;
+           top:28px;
+
+           img 
+           {
+            width:30px;
+           }
+
+        }
+
+        .month_year 
+        {
+            
+            padding:30px;
+            margin:0px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            button 
+            {
+                font-size: 8px;
+                width:15px;
+                height: 15px;
+                line-height: 10px;
+                border-radius: 50%;
+                border:none;
+                outline: none;
+                color:var(--white);
+                background:var(--light-green);
+                cursor: pointer;
+            }
+
+            h3 
+            {
+                color:var(--green);
+                letter-spacing: 5px;
+
+                span 
+                {
+                    margin-left: 10px;
+                    color:var(--gray);
+                    letter-spacing: 2px;
+                }
+            }
+        }
+
+        .week 
+        {
+            margin: 15px 30px;
+            display: flex;
+            align-items: center;
+            
+            .day 
+            {
+                background:var(--white);
+                width:49px;
+                height: 60px;
+                position: relative;
+                border-radius: 8px;
+                margin: 0px 8px;
+
+                h6 
+                {
+                    position: absolute;
+                    top:40%;
+                    left:50%;
+                    transform: translate(-50%,-50%);
+                    font-size: 20px;
+                    color: #bfbfbf;
+                }
+
+                span 
+                {
+                    position: absolute;
+                    color:var(--light-gray);
+                    font-size: 10px;
+                    bottom: 5px;
+                    left:50%;
+                    transform: translateX(-50%);
+                    font-weight: 500;
+                }
+
+                .delivery 
+                {
+                    position: absolute;
+                    top:0px;
+                    right: 0px;
+                    transform: translate(30%,-30%);
+                    background-color: var(--green);
+                    width:15px;
+                    height: 15px;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    span
+                    {
+                        top:0px;
+                        color:var(--white);
+                        font-size: 8px;
+                        line-height: 15px;
+                        
+                    }
+                }
+            }
+
+
+            .day.today
+            {
+                h6 
+                {
+                    color:var(--green);
+                }
+
+                span:not(.delivery span)
+                {
+                    color:var(--light-green);
+                }
+
+                
+            }
+
+        }
+
+
+        .first_week 
+        {
+            justify-content: right;
+        }
+
+        .last_week 
+        {
+            justify-content: left;
+        }
+    }
+}
+
+
+
+/* Responsive Mobile */
+@media screen and (max-width:500px) 
+{
+
+.calendar_container
+{
+
+    margin:20px 0px;
+   
+    .calendar 
+    {
+        width:90vw;
+        height:500px;
+    
+
+        .left_eyelet 
+        {
+           width: 18px;
+           height: 18px;
+           left:30px;
+           top:18px;
+
+           img 
+           {
+            width:20px;
+           }
+
+        }
+
+        .right_eyelet 
+        {
+         
+           width: 18px;
+           height: 18px;
+           right:30px;
+           top:18px;
+
+           img 
+           {
+            width:20px;
+           }
+
+        }
+
+        .month_year 
+        {
+            
+            padding:20px 0px;
+            margin:40px 0px;
+        }
+
+        .week 
+        {
+            margin: 15px 20px;
+            justify-content: center;
+
+    
+
+            .day 
+            {
+                width:38px;
+                height: 50px;
+                margin: 0px 3px;
+                border-radius: 6px;
+
+                h6 
+                {
+                    font-size: 15px;
+                }
+
+                span 
+                {
+                    font-size: 8px;
+                }
+
+                .delivery 
+                {
+                    width:13px;
+                    height: 13px;
+                  
+
+                    span
+                    {
+                     
+                        font-size: 8px;
+                        line-height: 12px;
+                        
+                    }
+                }
+            }
+
+
+            .day.today
+            {
+                h6 
+                {
+                    color:var(--green);
+                }
+
+                span:not(.delivery span)
+                {
+                    color:var(--light-green);
+                }
+
+                
+            }
+
+        }
+
+
+        .first_week 
+        {
+            justify-content: flex-end;
+            position: relative;
+            left:50%;
+            transform: translateX(-50%);
+            margin-left: 0px;
+            margin-right: 0px;
+            width:300px;
+
+            .day 
+            {
+                margin-right: 0px;
+                margin-left: 6px;
+            }
+        }
+
+        .last_week 
+        {
+            justify-content: flex-start;
+            position: relative;
+            left:50%;
+            transform: translateX(-50%);
+            margin-left: 0px;
+            margin-right: 0px;
+            width:300px;
+
+            .day 
+            {
+                margin-right: 6px;
+                margin-left: 0px;
+            }
+        }
+    }
+}
+}

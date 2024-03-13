@@ -1,0 +1,35 @@
+nav ul 
+{
+    list-style: none;
+    display: flex;
+    max-width:400px;
+    width:40vw;
+    justify-content: space-around;
+    align-items: center;
+
+    a 
+    {
+        text-decoration: none;
+        font-size: 13px;
+        color:var(--gray);
+        padding:2px;
+        border-bottom: 3px solid var(--white);
+        transition: .3s ease-in-out border;
+    }
+
+    a i 
+    {
+        color:var(--green);
+    }
+    
+    a.active 
+    {
+        border-bottom: 3px solid var(--green);
+        font-weight: 500;
+    }
+
+    a:hover 
+    {
+        border-bottom: 3px solid var(--green);
+    }
+}

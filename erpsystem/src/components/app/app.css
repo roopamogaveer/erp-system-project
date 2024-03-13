@@ -1,0 +1,19 @@
+:root
+{
+    --shadow-green:#cfffce;
+    --light-green:#6EE479;
+    --green:#40D633;
+    --dark-green:#1bb40d;
+    --light-gray:#CECECE;
+    --shadow-gray:#dddddd;
+    --gray:#8B8B8B;
+    --white:#fff;
+}
+
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    padding:0px;
+    margin:0px;
+
+}
