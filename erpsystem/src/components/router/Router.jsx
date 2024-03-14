@@ -16,13 +16,13 @@ const Router = () => {
         <Route path='/product'  >
             <Route path='' element={<Product />} />
             <Route path='add' element={<AddProduct />} />
-            <Route path='update' element={<UpdateProduct />} />
+            <Route path='update/:id' element={<UpdateProduct />} />
         </Route>
         <Route path='/order'  >
             <Route path='' element={<Order />} />
             <Route path='select' element={<ChooseProduct />} />
             <Route path='create' element={<AddOrder />} />
-            <Route path='update' element={<UpdateOrder />} />
+            <Route path='update/:id' element={<UpdateOrder />} />
         </Route>
     </Routes>
   )

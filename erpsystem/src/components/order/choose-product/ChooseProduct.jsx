@@ -1,10 +1,35 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import './chooseProduct.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const ChooseProduct = () => {
 
-  const navigate=useNavigate()
+    const [products,setProducts]=useState([]);
+
+    useEffect(()=>{
+        setProducts(()=>{ return JSON.parse(localStorage.getItem("data")).product});
+    },[]);
+
+
+    const [cart,setCart]=useState([]);
+
+    const handleSelect=(pid)=>
+    {
+        setCart((prev)=> {return [pid,...prev]});
+    }
+
+    const handleDeselect=(pid)=>
+    {
+        const data=cart;
+        data.splice(data.findIndex(p=>p.pid==pid),1);
+        setCart((prev)=>[...data]);
+    }
+
+  
+    useEffect(()=>
+    {
+        localStorage.setItem("cart",JSON.stringify(cart));
+    },[cart]);
 
 
 
@@ -17,50 +42,70 @@ const ChooseProduct = () => {
         </div>
         <div className="table-view product-list" >
             <table id="product-data">
-                <thead>
+            <thead>
                     <tr>
-                        <th>Short Name</th>
+                        <th>Name</th>
                         <th>Category</th>
-                        <th>Brand</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
                         <th>Price</th>
+                        <th>Stock</th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr >
-                        <td>df</td>
-                        <td>dg</td>
-                        <td>dfg</td>
-                        <td>dg</td>
-                        <td>dfg</td>
-                        <td>dfg</td>
-                        <td><a  className="a1"> <i class="fa-solid fa-circle-plus"></i> </a></td>
-                    </tr>
+                        {
+                            products.map((product) =>
+                                {
+                                    
+                                   return  (<tr key={product.pid}>
+                                        <td>{product.name}</td>
+                                        <td>{product.category}</td>
+                                        <td>{product.price}</td>
+                                        <td>{product.stock}</td>
+                                       {!cart.find(item=>item == product.pid) && 
+                                        <td><a onClick={()=>handleSelect(product.pid)}  className="a1"> <i class="fa-solid fa-circle-plus"></i> </a></td>
+                                       }
+
+                                       {cart.find(item=>item == product.pid) && 
+                                        <td><a onClick={()=>handleDeselect(product.pid)}  className="a1"> <i style={{color:'red'}} class="fa-solid fa-circle-minus"></i> </a></td>
+                                       }
+                                        </tr>)
+                                })
+                        }
+                   
                 </tbody>
             </table>
 
             <div  className="card-container">
-                <div className="card">
-                    <div className="card-name">
-                        <h3>prod.shortname</h3>
+                
+                {
+                            products.map((product) =>
+                                {
+                                    
+                                   return  (
+                                   <div className="card" >
+                                   <div className="card-name">
+                        <h3>{product.name}</h3>
                     </div>
                     <div className="card-category">
-                        <p>category</p>
-                        <p>brand</p>
+                        <p>{product.category}</p>
                     </div>
                     <div className="card-date">
-                        <p>startdate</p>
+                        <p>Stock : {product.stock}</p>
                     </div>
                     <div className="card-price">
-                        <h4>price</h4>
+                        <h4>Rs.{product.price}</h4>
                     </div>
                     <div className="card-action">
-                        <Link to="update"  className="a1"> <i class="fa-solid fa-circle-plus"></i> </Link>
-                    
+                    <a onClick={()=>handleSelect(product.pid)}  className="a1"> <i class="fa-solid fa-circle-plus"></i> </a>
+
                     </div>
-                </div>
+                    </div>
+                                   )
+                                })
+                        }
+                    
+               
             </div>
         </div>
     </div>

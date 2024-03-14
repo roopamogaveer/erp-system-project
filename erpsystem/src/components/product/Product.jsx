@@ -1,15 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import './product.css'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Product = () => {
 
-  const navigate=useNavigate()
+    const [products,setProducts]=useState([]);
 
-  const addProduct=()=>
-  {
-      navigate("/product/add");
-  }
+    useEffect(()=>{
+        setProducts(()=>{ return JSON.parse(localStorage.getItem("data")).product});
+    },[]);
+
+
+    const handleDelete=(pid)=>
+    {
+        const data=products;
+        data.splice(data.findIndex(p=>p.pid==pid),1);
+        localStorage.setItem("data",JSON.stringify({...JSON.parse(localStorage.getItem("data")),["product"]:data}));
+        setProducts(()=> [...data]);
+    }
 
 
   return (
@@ -23,50 +31,64 @@ const Product = () => {
             <table id="product-data">
                 <thead>
                     <tr>
-                        <th>Short Name</th>
+                        <th>Name</th>
                         <th>Category</th>
-                        <th>Brand</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
                         <th>Price</th>
+                        <th>Stock</th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr >
-                        <td>df</td>
-                        <td>dg</td>
-                        <td>dfg</td>
-                        <td>dg</td>
-                        <td>dfg</td>
-                        <td>dfg</td>
-                        <td><Link to="update"  className="a1"> <i className="fa fa-pen"></i> </Link></td>
-                        <td><a  className="a2"> <i className="fa fa-trash-alt"></i> </a></td>
-                    </tr>
+                        {
+                            products.map((product) =>
+                                {
+                                    
+                                   return  (<tr key={product.pid}>
+                                        <td>{product.name}</td>
+                                        <td>{product.category}</td>
+                                        <td>{product.price}</td>
+                                        <td>{product.stock}</td>
+                                        <td><Link to={`update/${product.pid}`}  className="a1"> <i className="fa fa-pen"></i> </Link></td>
+                                        <td><a  className="a2" onClick={()=>handleDelete(product.pid)}> <i className="fa fa-trash-alt"></i> </a></td>
+                                    </tr>)
+                                })
+                        }
+                   
                 </tbody>
             </table>
+          
 
             <div  className="card-container">
-                <div className="card">
-                    <div className="card-name">
-                        <h3>prod.shortname</h3>
+                
+                {
+                            products.map((product) =>
+                                {
+                                    
+                                   return  (
+                                   <div className="card" >
+                                   <div className="card-name">
+                        <h3>{product.name}</h3>
                     </div>
                     <div className="card-category">
-                        <p>category</p>
-                        <p>brand</p>
+                        <p>{product.category}</p>
                     </div>
                     <div className="card-date">
-                        <p>startdate</p>
+                        <p>Stock : {product.stock}</p>
                     </div>
                     <div className="card-price">
-                        <h4>price</h4>
+                        <h4>Rs.{product.price}</h4>
                     </div>
                     <div className="card-action">
-                        <a  className="a1"> <i className="fa fa-pen"></i> </a>
-                        <a  href="" className="a2"> <i className="fa fa-trash-alt"></i> </a>
+                    <Link to={`update/${product.pid}`}  className="a1"> <i className="fa fa-pen"></i> </Link>
+                    <a  className="a2" onClick={()=>handleDelete(product.pid)}> <i className="fa fa-trash-alt"></i> </a>
                     </div>
-                </div>
+                    </div>
+                                   )
+                                })
+                        }
+                    
+               
             </div>
             
         </div>

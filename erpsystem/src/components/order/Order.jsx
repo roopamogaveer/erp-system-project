@@ -1,11 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import './order.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
+import moment from 'moment'
 
 const Order = () => {
 
-  const navigate=useNavigate()
 
+  const [orders,setOrders]=useState([]);
+
+  const [searchParams,setSearchParams]=useSearchParams();
+
+  useEffect(()=>{
+       if(searchParams.get("date") )
+       {
+            const dateParam=searchParams.get("date").split("-");
+            const date=moment(new Date(parseInt(dateParam[2]),parseInt(dateParam[1])-1,parseInt(dateParam[0]))).format('DD-MM-yyyy');
+            setOrders(()=>{ return JSON.parse(localStorage.getItem("data")).order.filter(order=>order.orderDate==date)});
+       }
+       else 
+       {
+            setOrders(()=>{ return JSON.parse(localStorage.getItem("data")).order});
+       }
+
+       
+      
+  },[]);
+
+
+
+
+
+
+  const handleDelete=(oid)=>
+  {
+      const data=orders;
+      data.splice(data.findIndex(p=>p.oid==oid),1);
+      localStorage.setItem("data",JSON.stringify({...JSON.parse(localStorage.getItem("data")),["order"]:data}));
+      setOrders(()=> [...data]);
+  }
 
 
   return (
@@ -16,54 +48,65 @@ const Order = () => {
             <Link  to="/order/select"><i class="fa-solid fa-cart-plus"></i> Order now</Link>
         </div>
         <div className="table-view product-list" >
-            <table id="product-data">
+        <table id="product-data">
                 <thead>
                     <tr>
-                        <th>Short Name</th>
-                        <th>Category</th>
-                        <th>Brand</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Price</th>
+                        <th>Customer name</th>
+                        <th>Order date</th>
+                        <th>status</th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr >
-                        <td>df</td>
-                        <td>dg</td>
-                        <td>dfg</td>
-                        <td>dg</td>
-                        <td>dfg</td>
-                        <td>dfg</td>
-                        <td><Link to="update"  className="a1"> <i className="fa fa-pen"></i> </Link></td>
-                        <td><a  className="a2"> <i className="fa fa-trash-alt"></i> </a></td>
-                    </tr>
+                        {
+                            orders.map((order) =>
+                                {
+                                    
+                                   return  (<tr key={order.oid}>
+                                        <td>{order.customerName}</td>
+                                        <td>{order.orderDate}</td>
+                                        <td>{order.status}</td>
+                                        <td><Link to={`update/${order.oid}`}  className="a1"> <i className="fa fa-pen"></i> </Link></td>
+                                        <td><a  className="a2" onClick={()=>handleDelete(order.oid)}> <i className="fa fa-trash-alt"></i> </a></td>
+                                    </tr>)
+                                })
+                        }
+                   
                 </tbody>
             </table>
+          
 
             <div  className="card-container">
-                <div className="card">
-                    <div className="card-name">
-                        <h3>prod.shortname</h3>
+                
+                {
+                             orders.map((order) =>
+                                {
+                                    
+                                   return  (
+                                   <div className="card" >
+                                   <div className="card-name">
+                        <h3>{order.customerName}</h3>
                     </div>
                     <div className="card-category">
-                        <p>category</p>
-                        <p>brand</p>
+                        <p>{order.orderDate}</p>
                     </div>
-                    <div className="card-date">
-                        <p>startdate</p>
-                    </div>
+                  
                     <div className="card-price">
-                        <h4>price</h4>
+                        <h4>Rs.{order.status}</h4>
                     </div>
                     <div className="card-action">
-                        <Link to="update"  className="a1"> <i className="fa fa-pen"></i> </Link>
-                        <a  href="" className="a2"> <i className="fa fa-trash-alt"></i> </a>
+                    <Link to={`update/${order.oid}`}  className="a1"> <i className="fa fa-pen"></i> </Link>
+                    <a  className="a2" onClick={()=>handleDelete(order.oid)}> <i className="fa fa-trash-alt"></i> </a>
                     </div>
-                </div>
+                    </div>
+                                   )
+                                })
+                        }
+                    
+               
             </div>
+            
         </div>
     </div>
 </div>

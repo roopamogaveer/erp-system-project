@@ -1,5 +1,7 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import {useForm} from 'react-hook-form'
+import moment from 'moment'
 
 import './updateOrder.css'
 
@@ -9,7 +11,25 @@ const UpdateOrder = () => {
 
     const handleBack=()=>
     {
-        navigate(-1);
+        navigate("/order");
+    }
+
+    const {register,handleSubmit,formState:{errors}}=useForm();
+
+
+    const {id}=useParams()
+    const currentOrder=JSON.parse(localStorage.getItem("data")).order.filter(order=>order.oid==id)[0];
+    currentOrder.orderDate=moment(currentOrder.orderDate).format('yyyy-MM-DD').toString();
+
+
+    const onsubmit=(formData)=>
+    {
+        const order=formData;
+        const date=moment(order.orderDate).format('DD-MM-yyyy');
+        const data=JSON.parse(localStorage.getItem("data"));
+        data.order.splice(data.order.findIndex(o=>o.oid==id),1,{oid:id,...order,['orderDate']:date});
+        localStorage.setItem("data",JSON.stringify(data));
+        handleBack();
     }
 
 
@@ -22,46 +42,34 @@ const UpdateOrder = () => {
         </div>
         <div class="table-view">
             <h2>Update Order</h2>
-            <form>
+            <form onSubmit={handleSubmit(onsubmit)} method='post' >
                 <div class="input-wrapper">
-                    <input type="text" id="prodName" name="shortname"  />
-                    <label for="prodName">Short Name</label>
+                    <input  type="text" id="prodName"  {...register("customerName",{required:true,minLength:3,value:currentOrder.customerName})} />
+                    {!errors.customerName && <label for="prodName">Customer</label> }
+                    {errors.customerName && <label for="prodName" style={{color:'red'}}>Enter valid Customer name</label> }
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" id="prodCategory" autocomplete="off" list="categoryList" name="category" required />
-                    <label for="prodCategory">Category</label>
+                    <input type="text" id="prodStatus" autocomplete="off" list="statusList" name="status"  {...register("status",{required:true,value:currentOrder.status})} />
+                    
+                    {!errors.status && <label for="prodStatus">Status</label> }
+                    {errors.status && <label for="prodStatus" style={{color:'red'}}>Select valid Status</label> }
                   
-                    <datalist id="categoryList">
-                        <option  value="sfds"/>
-                       
+                    <datalist id="statusList">
+                        <option value='Pending' />
+                        <option value='Out for delivery' />
+                        <option value='Devlivered' />
                     </datalist>
                     
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" id="prodBrand" autocomplete="off" list="BrandList" name="brand" required />
-                    <label for="prodBrand">Brand</label>
-                  
-                    <datalist id="BrandList">
-                        <option value="sdf" />
-                    </datalist>
-                    
+                    <input type="date" id="prodDate" name="date" defaultValue={currentOrder.orderDate}  {...register("orderDate",{required:true,valueAsDate:true})} />
+                    {!errors.orderDate && <label for="prodDate">Order date</label> }
+                    {errors.orderDate && <label for="prodDate" style={{color:'red'}}>Enter valid date</label> }
                 </div>
-                <div class="input-wrapper">
-                    <input type="date" id="prodStartdate" name="startdate" />
-                    <label for="prodStartdate">Start Date</label>
-                </div>
-                <div class="input-wrapper">
-                    <input type="date" id="prodEnddate" name="enddate" />
-                    <label for="prodEnddate">End Date</label>
-                </div>
-                <div class="input-wrapper">
-                    <input type="number" id="prodPrice" name="price" />
-                    <label for="prodPrice">Price</label>
-                </div>
+             
                 <div class="input-wrapper submit-wrapper">
                    
-                <button type="submit" >Save Changes</button>
-
+                    <button>Save Changes</button>
                 </div>
             </form>
         </div>

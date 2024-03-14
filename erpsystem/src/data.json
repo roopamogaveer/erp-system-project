@@ -1,0 +1,51 @@
+{
+    "product":[
+        {
+            "pid":1,
+            "name":"MSI Ryzen",
+            "category":"Laptop",
+            "price":42000,
+            "stock":20
+        },
+        {
+            "pid":2,
+            "name":"Samsung Galaxy",
+            "category":"Mobile",
+            "price":10000,
+            "stock":10
+        },
+        {
+            "pid":3,
+            "name":"Acer gateway",
+            "category":"Laptop",
+            "price":23000,
+            "stock":8
+        }
+    ],
+
+    "order":[
+        {
+            "oid":1,
+            "customerName":"Roopa",
+            "orderDate":"21-03-2024",
+            "status":"Pending",
+            "product":[2,3]
+        },
+        {
+            "oid":2,
+            "customerName":"Aadya",
+            "orderDate":"14-03-2024",
+            "status":"Out for delivery",
+            "product":[3]
+        },
+        {
+            "oid":3,
+            "customerName":"Rishikala",
+            "orderDate":"01-03-2024",
+            "status":"Delivered",
+            "product":[1,2]
+        }
+    ],
+    
+    "category":["Mobile","Laptop","Earphone","Router"]
+}
