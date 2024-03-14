@@ -20,6 +20,8 @@ npm install moment
 ## Screenshots 
 1. Dashboard
    ![Dashboard](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/Dashboard.png)
+2. Product
+   ![Product](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/product.png)
 
 # Documentation 
 
