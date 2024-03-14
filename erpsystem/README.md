@@ -3,7 +3,9 @@
 ## Installed Packages
 
 npm install react-router-dom
+
 npm install react-hook-form
+
 npm install moment
 
 
@@ -16,7 +18,8 @@ npm install moment
 
 
 ## Screenshots 
-
+1. Dashboard
+   ![Dashboard](https://github.com/roopamogaveer/erp-system-project/blob/master/erpsystem/screenshots/Dashboard.png)
 
 # Documentation 
 
