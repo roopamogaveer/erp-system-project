@@ -34,7 +34,18 @@ npm install moment
    ![Order](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/order.png)
 8. Select Product
    ![Select Product](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/select_product.png)
-
+9. Add Order
+   ![Add Order](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/add_order_form.png)
+10. Add Order Validation
+    ![Add Order Validation](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/add_order_validation.png)
+11. Add Order Form
+    ![Add Order Form](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/add_order_form.png)
+12. Order Added
+    ![Add Order Validation](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/order_added.png)
+13. After Dashboard
+    ![After Dashboard](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/after_dashboard.png)
+14. On Click Calender
+    ![On Click Calender](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/on_click_calendar.png)
 # Documentation 
 
 ### Title of the Project
