@@ -22,6 +22,10 @@ npm install moment
    ![Dashboard](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/Dashboard.png)
 2. Product
    ![Product](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/product.png)
+3. Add Product
+   ![Add Product](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/add_product.png)
+4. Add Product Validation
+   ![Add Product Validation](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/add_product_validation.png)
 
 # Documentation 
 
