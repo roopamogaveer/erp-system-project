@@ -9,6 +9,9 @@ import AddOrder from '../order/add-order/AddOrder'
 import UpdateOrder from '../order/update-order/UpdateOrder'
 import ChooseProduct from '../order/choose-product/ChooseProduct'
 
+/*
+Router to manage all routes in single place
+*/
 const Router = () => {
   return (
     <Routes>

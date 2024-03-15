@@ -4,6 +4,11 @@ import Overview from './overview/Overview'
 
 import './dashboard.css'
 
+
+/*
+Dashboard component : 
+-- To show the project overview and calendar
+*/
 const Dashboard = () => {
   return (
     <section>

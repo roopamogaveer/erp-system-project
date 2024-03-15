@@ -5,10 +5,15 @@ import moment from 'moment'
 
 import './updateOrder.css'
 
+/*
+UpdateOrder component : 
+-- Display the form with order to be updated; validaton and handle submit. 
+*/
 const UpdateOrder = () => {
 
     const navigate=useNavigate()
 
+    // redirect to 'order' page
     const handleBack=()=>
     {
         navigate("/order");
@@ -16,12 +21,13 @@ const UpdateOrder = () => {
 
     const {register,handleSubmit,formState:{errors}}=useForm();
 
-
+    
     const {id}=useParams()
     const currentOrder=JSON.parse(localStorage.getItem("data")).order.filter(order=>order.oid==id)[0];
-    currentOrder.orderDate=moment(currentOrder.orderDate).format('yyyy-MM-DD').toString();
+    currentOrder.orderDate=currentOrder.orderDate.split("-").reverse().join("-");
 
 
+    // validate and submit
     const onsubmit=(formData)=>
     {
         const order=formData;
@@ -34,25 +40,25 @@ const UpdateOrder = () => {
 
 
   return (
-    <div class="main-container">
-    <div class="shadow"></div>      
-    <div class="table-container" >
-        <div class="table-action back">
-            <a onClick={handleBack} > <i class="fa fa-arrow-left"></i> </a>
+    <div className="main-container">
+    <div className="shadow"></div>      
+    <div className="table-container" >
+        <div className="table-action back">
+            <a onClick={handleBack} > <i className="fa fa-arrow-left"></i> </a>
         </div>
-        <div class="table-view">
+        <div className="table-view">
             <h2>Update Order</h2>
             <form onSubmit={handleSubmit(onsubmit)} method='post' >
-                <div class="input-wrapper">
+                <div className="input-wrapper">
                     <input  type="text" id="prodName"  {...register("customerName",{required:true,minLength:3,value:currentOrder.customerName})} />
-                    {!errors.customerName && <label for="prodName">Customer</label> }
-                    {errors.customerName && <label for="prodName" style={{color:'red'}}>Enter valid Customer name</label> }
+                    {!errors.customerName && <label htmlFor="prodName">Customer</label> }
+                    {errors.customerName && <label htmlFor="prodName" style={{color:'red'}}>Enter valid Customer name</label> }
                 </div>
-                <div class="input-wrapper">
-                    <input type="text" id="prodStatus" autocomplete="off" list="statusList" name="status"  {...register("status",{required:true,value:currentOrder.status})} />
+                <div className="input-wrapper">
+                    <input type="text" id="prodStatus" autoComplete="off" list="statusList" name="status"  {...register("status",{required:true,value:currentOrder.status})} />
                     
-                    {!errors.status && <label for="prodStatus">Status</label> }
-                    {errors.status && <label for="prodStatus" style={{color:'red'}}>Select valid Status</label> }
+                    {!errors.status && <label htmlFor="prodStatus">Status</label> }
+                    {errors.status && <label htmlFor="prodStatus" style={{color:'red'}}>Select valid Status</label> }
                   
                     <datalist id="statusList">
                         <option value='Pending' />
@@ -61,13 +67,13 @@ const UpdateOrder = () => {
                     </datalist>
                     
                 </div>
-                <div class="input-wrapper">
+                <div className="input-wrapper">
                     <input type="date" id="prodDate" name="date" defaultValue={currentOrder.orderDate}  {...register("orderDate",{required:true,valueAsDate:true})} />
-                    {!errors.orderDate && <label for="prodDate">Order date</label> }
-                    {errors.orderDate && <label for="prodDate" style={{color:'red'}}>Enter valid date</label> }
+                    {!errors.orderDate && <label htmlFor="prodDate">Order date</label> }
+                    {errors.orderDate && <label htmlFor="prodDate" style={{color:'red'}}>Enter valid date</label> }
                 </div>
              
-                <div class="input-wrapper submit-wrapper">
+                <div className="input-wrapper submit-wrapper">
                    
                     <button>Save Changes</button>
                 </div>

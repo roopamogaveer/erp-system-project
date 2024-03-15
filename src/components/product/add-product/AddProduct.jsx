@@ -3,10 +3,16 @@ import './addproduct.css'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
+
+/*
+AddProduct component : 
+-- Display the form and handleSubmit after validation
+*/
 const AddProduct = () => {
 
     const navigate=useNavigate()
 
+    // go back to 'product' page 
     const handleBack=()=>
     {
         navigate(-1);
@@ -21,6 +27,7 @@ const AddProduct = () => {
 
     const {register,handleSubmit,formState:{errors}}=useForm();
 
+    // validate and submit the form
     const onsubmit=(formData)=>
     {
         const product=formData;
@@ -34,24 +41,24 @@ const AddProduct = () => {
 
 
   return (
-    <div class="main-container">
-    <div class="table-container" >
-        <div class="table-action back">
-            <a onClick={handleBack}> <i class="fa fa-arrow-left"></i> </a>
+    <div className="main-container">
+    <div className="table-container" >
+        <div className="table-action back">
+            <a onClick={handleBack}> <i className="fa fa-arrow-left"></i> </a>
         </div>
-        <div class="table-view">
+        <div className="table-view">
             <h2>Add Product</h2>
             <form onSubmit={handleSubmit(onsubmit)} method='post' noValidate >
-                <div class="input-wrapper">
-                    <input  type="text" id="prodName"  {...register("name",{required:true,minLength:3})} f/>
-                    {!errors.name && <label for="prodName">Name</label> }
-                    {errors.name && <label for="prodName" style={{color:'red'}}>Enter valid Name</label> }
+                <div className="input-wrapper">
+                    <input  type="text" id="prodName"  {...register("name",{required:true,minLength:3})} />
+                    {!errors.name && <label htmlFor="prodName">Name</label> }
+                    {errors.name && <label htmlFor="prodName" style={{color:'red'}}>Enter valid Name</label> }
                 </div>
-                <div class="input-wrapper">
-                    <input type="text" id="prodCategory" autocomplete="off" list="categoryList" name="category"  {...register("category",{required:true})} />
+                <div className="input-wrapper">
+                    <input type="text" id="prodCategory" autoComplete="off" list="categoryList" name="category"  {...register("category",{required:true})} />
                     
-                    {!errors.category && <label for="prodCategory">Category</label> }
-                    {errors.category && <label for="prodCategory" style={{color:'red'}}>Select valid Category</label> }
+                    {!errors.category && <label htmlFor="prodCategory">Category</label> }
+                    {errors.category && <label htmlFor="prodCategory" style={{color:'red'}}>Select valid Category</label> }
                   
                     <datalist id="categoryList">
                         {
@@ -65,17 +72,17 @@ const AddProduct = () => {
                     </datalist>
                     
                 </div>
-                <div class="input-wrapper">
+                <div className="input-wrapper">
                     <input type="number" id="prodPrice" name="price"  {...register("price",{required:true,valueAsNumber:true,min:1})} />
-                    {!errors.price && <label for="prodPrice">Price</label> }
-                    {errors.price && <label for="prodPrice" style={{color:'red'}}>Enter valid Price</label> }
+                    {!errors.price && <label htmlFor="prodPrice">Price</label> }
+                    {errors.price && <label htmlFor="prodPrice" style={{color:'red'}}>Enter valid Price</label> }
                 </div>
-                <div class="input-wrapper">
+                <div className="input-wrapper">
                     <input type="number" id="prodStock" name="stock"  {...register("stock",{required:true,valueAsNumber:true,min:1})} />
-                    {!errors.stock && <label for="prodStock">Stock</label> }
-                    {errors.stock && <label for="prodStock" style={{color:'red'}}>Enter valid Stock</label> }
+                    {!errors.stock && <label htmlFor="prodStock">Stock</label> }
+                    {errors.stock && <label htmlFor="prodStock" style={{color:'red'}}>Enter valid Stock</label> }
                 </div>
-                <div class="input-wrapper submit-wrapper">
+                <div className="input-wrapper submit-wrapper">
                    
                     <button>Add</button>
                 </div>

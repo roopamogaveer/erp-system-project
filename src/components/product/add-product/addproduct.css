@@ -130,7 +130,7 @@ margin-bottom: 45px;
 
 
 
-@media screen and (max-width:1020px)
+@media screen and (max-width:500px)
 {
   
 
@@ -140,6 +140,15 @@ margin-bottom: 45px;
     {
         flex-wrap: wrap;
        margin-left: 0px;
+
+    }
+
+
+    div.table-container {
+        max-width: 600px;
+        width: 90vw;
+        min-width: 300px;
+        margin:0px;
     }
 
 

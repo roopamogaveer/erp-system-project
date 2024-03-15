@@ -2,6 +2,11 @@ import React,{useState,useEffect} from 'react'
 import './chooseProduct.css'
 import { Link } from 'react-router-dom'
 
+
+/*
+ChooseProduct component : 
+-- List of product showed to choose for an order
+*/
 const ChooseProduct = () => {
 
     const [products,setProducts]=useState([]);
@@ -13,11 +18,14 @@ const ChooseProduct = () => {
 
     const [cart,setCart]=useState([]);
 
+
+    // on selecting product add it to cart
     const handleSelect=(pid)=>
     {
         setCart((prev)=> {return [pid,...prev]});
     }
 
+    // on Deselecting product remove it from cart
     const handleDeselect=(pid)=>
     {
         const data=cart;
@@ -38,7 +46,7 @@ const ChooseProduct = () => {
             
     <div className="table-container" >
         <div className="table-action add">
-            <Link  to="/order/create"><i class="fa-solid fa-circle-check"></i> Confirm Products</Link>
+            <Link  to="/order/create"><i className="fa-solid fa-circle-check"></i> Confirm Products</Link>
         </div>
         <div className="table-view product-list" >
             <table id="product-data">
@@ -63,11 +71,11 @@ const ChooseProduct = () => {
                                         <td>{product.price}</td>
                                         <td>{product.stock}</td>
                                        {!cart.find(item=>item == product.pid) && 
-                                        <td><a onClick={()=>handleSelect(product.pid)}  className="a1"> <i class="fa-solid fa-circle-plus"></i> </a></td>
+                                        <td><a onClick={()=>handleSelect(product.pid)}  className="a1"> <i className="fa-solid fa-circle-plus"></i> </a></td>
                                        }
 
                                        {cart.find(item=>item == product.pid) && 
-                                        <td><a onClick={()=>handleDeselect(product.pid)}  className="a1"> <i style={{color:'red'}} class="fa-solid fa-circle-minus"></i> </a></td>
+                                        <td><a onClick={()=>handleDeselect(product.pid)}  className="a1"> <i style={{color:'red'}} className="fa-solid fa-circle-minus"></i> </a></td>
                                        }
                                         </tr>)
                                 })
@@ -83,7 +91,7 @@ const ChooseProduct = () => {
                                 {
                                     
                                    return  (
-                                   <div className="card" >
+                                   <div className="card" key={product.pid} >
                                    <div className="card-name">
                         <h3>{product.name}</h3>
                     </div>
@@ -97,7 +105,13 @@ const ChooseProduct = () => {
                         <h4>Rs.{product.price}</h4>
                     </div>
                     <div className="card-action">
-                    <a onClick={()=>handleSelect(product.pid)}  className="a1"> <i class="fa-solid fa-circle-plus"></i> </a>
+                    {!cart.find(item=>item == product.pid) && 
+                    <a onClick={()=>handleSelect(product.pid)}  className="a1"> <i className="fa-solid fa-circle-plus"></i> </a>
+                    }
+
+                    {cart.find(item=>item == product.pid) && 
+                    <a onClick={()=>handleDeselect(product.pid)}  className="a1"> <i style={{color:'red'}} className="fa-solid fa-circle-minus"></i> </a>
+                     }
 
                     </div>
                     </div>

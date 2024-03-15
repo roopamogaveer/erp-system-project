@@ -3,6 +3,10 @@ import './order.css'
 import { Link, useSearchParams } from 'react-router-dom'
 import moment from 'moment'
 
+/*
+Order component : 
+-- Display the list of order with delete/edit option. 
+*/
 const Order = () => {
 
 
@@ -27,10 +31,7 @@ const Order = () => {
   },[]);
 
 
-
-
-
-
+// delete order
   const handleDelete=(oid)=>
   {
       const data=orders;
@@ -45,7 +46,7 @@ const Order = () => {
             
     <div className="table-container" >
         <div className="table-action add">
-            <Link  to="/order/select"><i class="fa-solid fa-cart-plus"></i> Order now</Link>
+            <Link  to="/order/select"><i className="fa-solid fa-cart-plus"></i> Order now</Link>
         </div>
         <div className="table-view product-list" >
         <table id="product-data">
@@ -84,7 +85,7 @@ const Order = () => {
                                 {
                                     
                                    return  (
-                                   <div className="card" >
+                                   <div className="card" key={order.oid} >
                                    <div className="card-name">
                         <h3>{order.customerName}</h3>
                     </div>

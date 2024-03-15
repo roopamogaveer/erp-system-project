@@ -5,7 +5,13 @@ import { Link } from 'react-router-dom'
 import './calendar.css'
 import eyelet from './../../../assets/eyelet.jpg' 
 
+
+/*
+Calendar component : 
+-- Fetches date objects and matched with order details and present the data
+*/
 const Calendar = () => {
+
 
     const [dateList, setDatelist]=useState([]);
     const [firstWeek,setFirstWeek]=useState([]);
@@ -18,6 +24,7 @@ const Calendar = () => {
 
 
 
+    // to get the date objects with number of delivery on each date
     const getAllDatesOfMonth=(month,year)=>
     {
         const orders=JSON.parse(localStorage.getItem("data")).order;
@@ -29,9 +36,12 @@ const Calendar = () => {
             let count=orders.filter(order => order.orderDate.toString()==moment(new Date(year,month,day)).format('DD-MM-yyyy').toString()).length;
             dates.push({["date"]:new Date(year,month,day),["count"]:count});
         }
+  
         
         setDatelist(()=>[...dates]);
+        setFirstWeek(()=>[]);
     }
+
 
     useEffect(()=>
     {
@@ -39,6 +49,7 @@ const Calendar = () => {
     },[])
 
 
+    // update first week dates into firstweek useState hook
     const updateFirstWeek=()=>
     {
         for(let i=0;i<dateList.length;i++)
@@ -55,12 +66,14 @@ const Calendar = () => {
         }
     }
 
+     // update last week dates into lastweek useState hook
     const updateLastWeek=()=>
     {
         setLastWeek(()=> [...dateList.slice(dateList.length-dateList[dateList.length-1]?.date.getDay()-1,dateList.length)]);
    
     }
 
+     // update other weeks dates into week useState hook
     const updateOtherWeek=()=>
     {
         setWeek(()=>[...dateList.filter(data=>data?.date.getDate()>firstWeek[firstWeek.length-1]?.date.getDate() && data?.date.getDate()<lastWeek[0]?.date.getDate())]);
@@ -93,64 +106,65 @@ const Calendar = () => {
     },[week]);
 
 
-    useEffect(()=>
-    {
-      
-      console.log(weekList);
-       
-    },[weekList]);
 
 
+// previous month action on calendar : As of now its static with hardcoded month
 const handlePrevious=()=>
 {
     let currentYear=new Date().getFullYear();
-    let nextMonth=new Date().getMonth-1;
+    let nextMonth=new Date().getMonth()-1;
 
     if(nextMonth<0)
     {
         nextMonth=11;
         currentYear--;
     }
+
+    setMonth(()=> "February");
     getAllDatesOfMonth(nextMonth,currentYear);
 }
 
+
+// next month action on calendar : As of now its static with hardcoded month 
 const handleNext=()=>
 {
     let currentYear=new Date().getFullYear();
-    let nextMonth=new Date().getMonth+1;
+    let nextMonth=new Date().getMonth()+1;
 
     if(nextMonth>11)
     {
         nextMonth=1;
         currentYear++;
     }
+
+    setMonth(()=> "April");
     getAllDatesOfMonth(nextMonth,currentYear);
 }
 
 
   return (
-    <div class="calendar_container">
-            <div class="calendar">
-                <div class="left_eyelet">
+    <div className="calendar_container">
+            <div className="calendar">
+                <div className="left_eyelet">
                     <img  src={eyelet} alt="eyelet image"/>
                 </div>
-                <div class="right_eyelet">
+                <div className="right_eyelet">
                     <img  src={eyelet} alt="eyelet image"/>
                 </div>
-                <div class="month_year">
-                    <button title="Previous" onClick={handlePrevious}><i class="fa-solid fa-angle-left"></i></button>
-                    <h3><i class="fa-regular fa-calendar-days"></i>{month} <span>{year}</span></h3>
-                    <button title="Next" onClick={handleNext}><i class="fa-solid fa-angle-right"></i></button>
+                <div className="month_year">
+                    <button title="Previous" onClick={handlePrevious}><i className="fa-solid fa-angle-left"></i></button>
+                    <h3><i className="fa-regular fa-calendar-days"></i>{month} <span>{year}</span></h3>
+                    <button title="Next" onClick={handleNext}><i className="fa-solid fa-angle-right"></i></button>
                 </div>
-                <div class="week first_week">
+                <div className="week first_week">
                     {
                         firstWeek.map(data=>
                             {
-                                return  <Link to={`order?date=${data.date.getDate()}-${data.date.getMonth()+1}-${data.date.getUTCFullYear()}`}>
+                                return  <Link key={data.date.getDate()} to={`order?date=${data.date.getDate()}-${data.date.getMonth()+1}-${data.date.getUTCFullYear()}`}>
                                 <div className={data?.date.getDate()==new Date().getDate() && data?.date.getMonth()==new Date().getMonth() ? "day today":"day" }>
                                     {
                                     data?.count > 0 &&  
-                                    <div class="delivery">
+                                    <div className="delivery">
                                         <span>{data?.count}</span>
                                     </div>
                                     }
@@ -167,15 +181,15 @@ const handleNext=()=>
                 {
                     weekList.map((weekdata)=>
                     {
-                        return <div class="week">
+                        return <div className="week" key={weekList.indexOf(weekdata)}>
                         {
                             weekdata.map(data=>
                                 {
-                                    return   <Link to={`order?date=${data.date.getDate()}-${data.date.getMonth()+1}-${data.date.getUTCFullYear()}`}>
+                                    return   <Link key={data.date.getDate()}  to={`order?date=${data.date.getDate()}-${data.date.getMonth()+1}-${data.date.getUTCFullYear()}`}>
                                     <div className={data?.date.getDate()==new Date().getDate() && data?.date.getMonth()==new Date().getMonth() ? "day today":"day" }>
                                         {
                                         data?.count > 0 &&  
-                                        <div class="delivery">
+                                        <div className="delivery">
                                             <span>{data?.count}</span>
                                         </div>
                                         }
@@ -190,15 +204,15 @@ const handleNext=()=>
                 }
 
               
-                <div class="week last_week">
+                <div className="week last_week">
                 {
                         lastWeek.map(data=>
                             {
-                                return   <Link to={`order?date=${data.date.getDate()}-${data.date.getMonth()+1}-${data.date.getUTCFullYear()}`}>
+                                return   <Link key={data.date.getDate()}  to={`order?date=${data.date.getDate()}-${data.date.getMonth()+1}-${data.date.getUTCFullYear()}`}>
                                 <div className={data?.date.getDate()==new Date().getDate() && data?.date.getMonth()==new Date().getMonth() ? "day today":"day" }>
                                     {
                                     data?.count > 0 &&  
-                                    <div class="delivery">
+                                    <div className="delivery">
                                         <span>{data?.count}</span>
                                     </div>
                                     }

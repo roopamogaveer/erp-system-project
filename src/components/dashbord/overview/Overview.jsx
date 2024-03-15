@@ -4,6 +4,10 @@ import Details from '../details/Details'
 import './overview.css'
 import mockdata from './../../../data.json'
 
+/*
+Overview component : 
+-- To show the project overview with Details-component
+*/
 const Overview=()=> {
 
 
@@ -11,6 +15,7 @@ const Overview=()=> {
   let  orderCount;
 
 
+//   if data is not avaible  then load the data into localStorage from data.json file. Else read from localStorage 
       if(!localStorage.getItem("data"))
       {
         localStorage.setItem("data",JSON.stringify(mockdata));
@@ -28,13 +33,13 @@ const Overview=()=> {
 
 
   return (
-    <div class="overview">
+    <div className="overview">
             <h2>Over<span>view</span></h2>
-            <div class="overview_card_container">
+            <div className="overview_card_container">
                <Details count={productCount} type="Product" />
                <Details count={orderCount} type="Order" />
             </div>
-            <div class="feature">
+            <div className="feature">
                 <p>Explore products and manage orders with respective menu and button given above. User-friendly order details showing in Calender view to make ease of the application. You can click on the date to view the deliverable orders on that particular day.</p>
             </div>
    </div>

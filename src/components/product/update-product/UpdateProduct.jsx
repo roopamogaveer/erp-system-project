@@ -4,6 +4,11 @@ import { useForm } from 'react-hook-form'
 
 import './updateproduct.css'
 
+
+/*
+UpdateProduct component : 
+-- Display the form with product to be updated; validaton and handle submit. 
+*/
 const UpdateProduct = () => {
 
     const navigate=useNavigate()
@@ -39,24 +44,24 @@ const UpdateProduct = () => {
 
 
   return (
-    <div class="main-container">
-    <div class="table-container" >
-        <div class="table-action back">
-            <a onClick={handleBack}> <i class="fa fa-arrow-left"></i> </a>
+    <div className="main-container">
+    <div className="table-container" >
+        <div className="table-action back">
+            <a onClick={handleBack}> <i className="fa fa-arrow-left"></i> </a>
         </div>
-        <div class="table-view">
+        <div className="table-view">
             <h2>Update Product</h2>
             <form onSubmit={handleSubmit(onsubmit)} method='post' noValidate >
-                <div class="input-wrapper">
+                <div className="input-wrapper">
                     <input  type="text" id="prodName"  {...register("name",{required:true,minLength:3,value:currentProduct.name})} />
-                    {!errors.name && <label for="prodName">Name</label> }
-                    {errors.name && <label for="prodName" style={{color:'red'}}>Enter valid Name</label> }
+                    {!errors.name && <label htmlFor="prodName">Name</label> }
+                    {errors.name && <label htmlFor="prodName" style={{color:'red'}}>Enter valid Name</label> }
                 </div>
-                <div class="input-wrapper">
-                    <input type="text" id="prodCategory"  autocomplete="off" list="categoryList" name="category"  {...register("category",{required:true,value:currentProduct.category})} />
+                <div className="input-wrapper">
+                    <input type="text" id="prodCategory"  autoComplete="off" list="categoryList" name="category"  {...register("category",{required:true,value:currentProduct.category})} />
                     
-                    {!errors.category && <label for="prodCategory">Category</label> }
-                    {errors.category && <label for="prodCategory" style={{color:'red'}}>Select valid Category</label> }
+                    {!errors.category && <label htmlFor="prodCategory">Category</label> }
+                    {errors.category && <label htmlFor="prodCategory" style={{color:'red'}}>Select valid Category</label> }
                   
                     <datalist id="categoryList">
                         {
@@ -70,17 +75,17 @@ const UpdateProduct = () => {
                     </datalist>
                     
                 </div>
-                <div class="input-wrapper">
+                <div className="input-wrapper">
                     <input type="number" id="prodPrice" name="price"  {...register("price",{required:true,valueAsNumber:true,min:1,value:currentProduct.price})} />
-                    {!errors.price && <label for="prodPrice">Price</label> }
-                    {errors.price && <label for="prodPrice" style={{color:'red'}}>Enter valid Price</label> }
+                    {!errors.price && <label htmlFor="prodPrice">Price</label> }
+                    {errors.price && <label htmlFor="prodPrice" style={{color:'red'}}>Enter valid Price</label> }
                 </div>
-                <div class="input-wrapper">
+                <div className="input-wrapper">
                     <input type="number" id="prodStock" name="stock"   {...register("stock",{required:true,valueAsNumber:true,min:1,value:currentProduct.stock})} />
-                    {!errors.stock && <label for="prodStock">Stock</label> }
-                    {errors.stock && <label for="prodStock" style={{color:'red'}}>Enter valid Stock</label> }
+                    {!errors.stock && <label htmlFor="prodStock">Stock</label> }
+                    {errors.stock && <label htmlFor="prodStock" style={{color:'red'}}>Enter valid Stock</label> }
                 </div>
-                <div class="input-wrapper submit-wrapper">
+                <div className="input-wrapper submit-wrapper">
                    
                     <button>Update</button>
                 </div>

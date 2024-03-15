@@ -2,6 +2,11 @@ import React, { useState,useEffect } from 'react'
 import './product.css'
 import { Link, useNavigate } from 'react-router-dom'
 
+
+/*
+Product component : 
+-- Display the list of product with delete/edit option. 
+*/
 const Product = () => {
 
     const [products,setProducts]=useState([]);
@@ -11,6 +16,7 @@ const Product = () => {
     },[]);
 
 
+    // delete product
     const handleDelete=(pid)=>
     {
         const data=products;
@@ -66,7 +72,7 @@ const Product = () => {
                                 {
                                     
                                    return  (
-                                   <div className="card" >
+                                   <div className="card" key={product.pid} >
                                    <div className="card-name">
                         <h3>{product.name}</h3>
                     </div>

@@ -192,7 +192,7 @@
     .calendar 
     {
         width:90vw;
-        height:500px;
+        height:auto;
     
 
         .left_eyelet 
