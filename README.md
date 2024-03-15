@@ -19,8 +19,33 @@ npm install moment
 
 ## Screenshots 
 1. Dashboard
-   ![Dashboard](https://github.com/roopamogaveer/erp-system-project/blob/master/erpsystem/screenshots/Dashboard.png)
-
+   ![Dashboard](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/Dashboard.png)
+2. Product
+   ![Product](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/product.png)
+3. Add Product
+   ![Add Product](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/add_product.png)
+4. Add Product Validation
+   ![Add Product Validation](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/add_product_validation.png)
+5. Add Product Form
+   ![Add Product Form](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/add_product_form.png)
+6. Product Added
+   ![Product Added](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/product_added.png)
+7. Order
+   ![Order](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/order.png)
+8. Select Product
+   ![Select Product](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/select_product.png)
+9. Add Order
+   ![Add Order](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/add_order_form.png)
+10. Add Order Validation
+    ![Add Order Validation](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/add_order_validation.png)
+11. Add Order Form
+    ![Add Order Form](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/add_order_form.png)
+12. Order Added
+    ![Add Order Validation](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/order_added.png)
+13. After Dashboard
+    ![After Dashboard](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/after_dashboard.png)
+14. On Click Calender
+    ![On Click Calender](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/on_click_calendar.png)
 # Documentation 
 
 ### Title of the Project
