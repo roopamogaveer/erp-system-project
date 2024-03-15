@@ -46,6 +46,21 @@ npm install moment
     ![After Dashboard](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/after_dashboard.png)
 14. On Click Calender
     ![On Click Calender](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/on_click_calendar.png)
+
+## Responsive design
+
+1. Dashboard
+   ![Dashboard](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/Responsive/dashboard.png)
+2. Product
+   ![Product](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/Responsive/product.png)
+3. Add Product
+   ![Add Product](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/Responsive/add_product.png)
+4. Order
+   ![Order](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/Responsive/orders.png)
+5. Confirm Order
+   ![Confirm Order](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/Responsive/confirm_order.png)
+6. Calender
+   ![Calender](https://github.com/roopamogaveer/erp-system-project/blob/master/screenshots/Responsive/calendar.png)
 # Documentation 
 
 ### Title of the Project
